@@ -83,6 +83,7 @@ const Home = () => {
     console.log(addr);
     setAddr(addr);
 
+/*<<<<<<< masterClone
     const userDetails = await contract.userDetails(addr);
     const amount = userDetails.deposited.toNumber() / 10 ** 10;
     setDeposite(amount);
@@ -95,9 +96,21 @@ const Home = () => {
       (parseFloat(userDetails.referralReward) / 10 ** 10) * 0.005 +
         amount * 0.005
     );
-    
+
+=======
+  */  
+    // const decimal = 10;
+
+    const userDetails = await contract.userDetails(addr); 
+    const amount = userDetails.deposited/(10**18);
+    setDeposite(amount);
+    setRoi(amount*0.005);
+    setReferralReward(parseFloat(userDetails.referralReward/(10**18))*0.005);
+    setClaimed(userDetails.claimed/(10**18));
+    // setReward((userDetails.reward/(10**18)));
+    setReward(userDetails.referralReward/(10**18)*0.005 + amount*0.005);
+
     setReferredCount(userDetails.referredCount.toNumber());
-    // const reff = await contract.referralLink("0x1d95eAbc614834Bf8Fb64d171D5577432187C436");
 
     // const signerContract = contract.connect(signer);
     // const ref = signerContract.setTreasurer("0x106aa65493c0096d4a777dCA393A4687eF7E8839");
@@ -131,8 +144,20 @@ const Home = () => {
 
   async function addRef() {
     
+/*<<<<<<< masterClone
       // MetaMask requires requesting permission to connect users accounts
       await provider.send("eth_requestAccounts", []);
+=======*/
+    // Each DAI has 18 decimal places
+    const tokenAddress = await contract.token();
+    // const tokens = ethers.utils.parseUnits("100", 10);
+    // Each DAI has 18 decimal places
+    const tokens = ethers.utils.parseUnits("100.0", 18);
+    // const tokens = 100*10**18;
+    console.log(tokens);
+    const tokenContract = new ethers.Contract(tokenAddress, tokenAbi, provider).connect(signer);
+    await tokenContract.approve(address, tokens);
+
 
       // The MetaMask plugin also allows signing transactions to
       // send ether and pay to change state within the blockchain.
