@@ -1,11 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import "../pages/Main.css";
 import "./img/logo/logo3.png";
+import "react-icons";
 import mainLogo from "./img/logo/logo3.png";
 import mainAbout from "./img/about/profile.png";
 import mainIcon1 from "./img/icon/d1.png";
 import mainIcon2 from "./img/icon/d2.png";
+import mainIcon3 from "./img/icon/d3.png";
+import mainIcon4 from "./img/icon/d4.png";
+import mainIcon5 from "./img/icon/d5.png";
+import mainIcon6 from "./img/icon/d6.png";
+
 import { ethers } from "ethers";
+
+import { TiArrowForward, TiBriefcase } from "react-icons/ti";
+import { AiOutlineGlobal } from "react-icons/ai";
+import { AiOutlineDeploymentUnit } from "react-icons/ai";
+import {
+  RiNotification2Line,
+  RiMoneyDollarCircleFill,
+  RiSettings2Line,
+  RiLockPasswordLine,
+  RiHomeSmileLine,
+  RiPhoneFindLine,
+  RiAlignLeft,
+  RiContactsLine,
+  RiWallet3Line,
+} from "react-icons/ri";
+
+import { MdAddTask, MdHourglassEmpty, MdOutlineSavings } from "react-icons/md";
 
 /*
 Data
@@ -28,15 +51,16 @@ const Home = () => {
 
   // A Web3Provider wraps a standard Web3 provider, which is
   // what MetaMask injects as window.ethereum into each page
-  const provider = new ethers.providers.Web3Provider(window.ethereum)
-  
-  const address = "0x5c62cF4A16C577C36f6518a5CDf3CE08521e276F"; 
+  const provider = new ethers.providers.Web3Provider(window.ethereum);
 
-  const abi = '[{"inputs":[{"internalType":"contract IERC20","name":"_token","type":"address"},{"internalType":"address","name":"_treasurer","type":"address"}],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"investor","type":"address"},{"indexed":false,"internalType":"uint256","name":"timestamp","type":"uint256"}],"name":"Invested","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"previousOwner","type":"address"},{"indexed":true,"internalType":"address","name":"newOwner","type":"address"}],"name":"OwnershipTransferred","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"user","type":"address"},{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"}],"name":"Reward","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"withdrawer","type":"address"},{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"timestamp","type":"uint256"}],"name":"Withdrawn","type":"event"},{"inputs":[{"internalType":"address","name":"addr","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"},{"internalType":"bytes32","name":"referral","type":"bytes32"}],"name":"addReferral","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"blacklist","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"_add","type":"address"},{"internalType":"bool","name":"_blacklist","type":"bool"}],"name":"blacklistUser","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"claim","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint16","name":"index","type":"uint16"}],"name":"dailyCollection","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"myRewards","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"referralLink","outputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"renounceOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"setThirtyDayRewardPolicy","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"_treasurer","type":"address"}],"name":"setTreasurer","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"thirtyDayRewardPolicy","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"token","outputs":[{"internalType":"contract IERC20","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"addr","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"topup","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"treasurer","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"_add","type":"address"}],"name":"userDetails","outputs":[{"internalType":"uint256","name":"deposited","type":"uint256"},{"internalType":"uint256","name":"timestamp","type":"uint256"},{"internalType":"uint256","name":"referralReward","type":"uint256"},{"internalType":"uint256","name":"claimed","type":"uint256"},{"internalType":"uint256","name":"reward","type":"uint256"},{"internalType":"address","name":"addr","type":"address"},{"internalType":"bytes32","name":"link","type":"bytes32"},{"internalType":"uint256","name":"directCount","type":"uint256"},{"internalType":"uint256","name":"referredCount","type":"uint256"},{"internalType":"bytes32","name":"referred","type":"bytes32"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"withdraw","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"withdrawAll","outputs":[],"stateMutability":"nonpayable","type":"function"}]';
+  const address = "0x7ebC50cAd5D1D32078AccC3C428168Db7E0f2162";
+
+  const abi =
+    '[{"inputs":[{"internalType":"contract IERC20","name":"_token","type":"address"},{"internalType":"address","name":"_treasurer","type":"address"}],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"investor","type":"address"},{"indexed":false,"internalType":"uint256","name":"timestamp","type":"uint256"}],"name":"Invested","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"previousOwner","type":"address"},{"indexed":true,"internalType":"address","name":"newOwner","type":"address"}],"name":"OwnershipTransferred","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"user","type":"address"},{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"}],"name":"Reward","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"withdrawer","type":"address"},{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"timestamp","type":"uint256"}],"name":"Withdrawn","type":"event"},{"inputs":[{"internalType":"address","name":"addr","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"},{"internalType":"bytes32","name":"referral","type":"bytes32"}],"name":"addReferral","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"blacklist","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"_add","type":"address"},{"internalType":"bool","name":"_blacklist","type":"bool"}],"name":"blacklistUser","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"claim","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint16","name":"index","type":"uint16"}],"name":"dailyCollection","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"myRewards","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"referralLink","outputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"renounceOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"_treasurer","type":"address"}],"name":"setTreasurer","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"token","outputs":[{"internalType":"contract IERC20","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"addr","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"topup","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"treasurer","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"_add","type":"address"}],"name":"userDetails","outputs":[{"internalType":"uint256","name":"deposited","type":"uint256"},{"internalType":"uint256","name":"timestamp","type":"uint256"},{"internalType":"uint256","name":"referralReward","type":"uint256"},{"internalType":"uint256","name":"claimed","type":"uint256"},{"internalType":"uint256","name":"reward","type":"uint256"},{"internalType":"address","name":"addr","type":"address"},{"internalType":"bytes32","name":"link","type":"bytes32"},{"internalType":"uint256","name":"referredCount","type":"uint256"},{"internalType":"bytes32","name":"referred","type":"bytes32"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"withdraw","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"withdrawAll","outputs":[],"stateMutability":"nonpayable","type":"function"}]';
   const tokenAbi = [
     // Send some of your tokens to someone else
-  "function approve(address delegate, uint256 numTokens)",
-  ]
+    "function approve(address delegate, uint256 numTokens)",
+  ];
   // The Contract object
   const contract = new ethers.Contract(address, abi, provider);
 
@@ -44,11 +68,10 @@ const Home = () => {
   //   const txReceipt = await provider.getTransactionReceipt(transactionHash);
   //   if (txReceipt && txReceipt.blockNumber) {
   //       return txReceipt;
-  //   }  
+  //   }
   // }
 
   async function connectWallet() {
-
     // MetaMask requires requesting permission to connect users accounts
     await provider.send("eth_requestAccounts", []);
 
@@ -60,14 +83,18 @@ const Home = () => {
     console.log(addr);
     setAddr(addr);
 
-    const userDetails = await contract.userDetails(addr); 
-    const amount = userDetails.deposited.toNumber()/(10**10);
+    const userDetails = await contract.userDetails(addr);
+    const amount = userDetails.deposited.toNumber() / 10 ** 10;
     setDeposite(amount);
-    setRoi(amount*0.005);
-    setReferralReward(parseFloat(userDetails.referralReward)/(10**10)*0.005);
-    setClaimed(userDetails.claimed.toNumber()/(10**10));
-    setReward(parseFloat(userDetails.reward)/(10**10));
-    // setReward(parseFloat(userDetails.referralReward)/(10**10)*0.005 + amount*0.005);
+    setRoi(amount * 0.005);
+    setReferralReward(
+      (parseFloat(userDetails.referralReward) / 10 ** 10) * 0.005
+    );
+    setClaimed(userDetails.claimed.toNumber() / 10 ** 10);
+    setReward(
+      (parseFloat(userDetails.referralReward) / 10 ** 10) * 0.005 +
+        amount * 0.005
+    );
     setReferredCount(userDetails.referredCount.toNumber());
     // const reff = await contract.referralLink("0x1d95eAbc614834Bf8Fb64d171D5577432187C436");
 
@@ -75,47 +102,74 @@ const Home = () => {
     // const ref = signerContract.setTreasurer("0x106aa65493c0096d4a777dCA393A4687eF7E8839");
     // console.log("ref: ", ref);
   }
-  
 
-  const sleep = ms => new Promise(
-    resolve => setTimeout(resolve, ms)
-  );
+  const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+  /* Deposite Functions */
+  function onPopupButton() {
+    /* return alert("Button") */
+    var amount = prompt("Please enter the deposite amount here", "100");
+
+    
+    /* document.getElementById("").innerHTML =
+      "You have entered " + amount + " "; */
+    
+    if (amount>=100) {
+      setTimeout(addRef, 2000);
+      
+    }
+    else {
+      alert("please enter the correct amount")
+      
+    }
+  }
+
+
+
+  /* End  */
 
   async function addRef() {
-    // MetaMask requires requesting permission to connect users accounts
-    await provider.send("eth_requestAccounts", []);
-
-    // The MetaMask plugin also allows signing transactions to
-    // send ether and pay to change state within the blockchain.
-    // For this, you need the account signer...
-    const signer = provider.getSigner();
-
-    // const reff = await contract.owner();
-    // console.log("lol: ", reff);
     
-    // Each DAI has 18 decimal places
-    const tokenAddress = await contract.token();
-    // const tokens = ethers.utils.parseUnits("100", 10);
-    const tokens = 100*10**10;
-    console.log(tokens);
-    const tokenContract = new ethers.Contract(tokenAddress, tokenAbi, provider).connect(signer);
-    await tokenContract.approve(address, tokens);
+      // MetaMask requires requesting permission to connect users accounts
+      await provider.send("eth_requestAccounts", []);
 
-    await sleep(15000);
+      // The MetaMask plugin also allows signing transactions to
+      // send ether and pay to change state within the blockchain.
+      // For this, you need the account signer...
+      const signer = provider.getSigner();
 
-    // const addr = "0xDC09B74bA5618D969979CF3495Ea3Dd14BC94312";
-    let reffAddress = window.location.href.replace(window.location.origin, '');
-    reffAddress = reffAddress.replace("/", '');
-    if (reffAddress == '') {
-      reffAddress = "0x1d95eAbc614834Bf8Fb64d171D5577432187C436";
+      // const reff = await contract.owner();
+      // console.log("lol: ", reff);
+
+      // Each DAI has 18 decimal places
+      const tokenAddress = await contract.token();
+      // const tokens = ethers.utils.parseUnits("100", 10);
+      const tokens = 100 * 10 ** 10;
+      console.log(tokens);
+      const tokenContract = new ethers.Contract(
+        tokenAddress,
+        tokenAbi,
+        provider
+      ).connect(signer);
+      await tokenContract.approve(address, tokens);
+
+      await sleep(15000);
+
+      // const addr = "0xDC09B74bA5618D969979CF3495Ea3Dd14BC94312";
+      let reffAddress = window.location.href.replace(
+        window.location.origin,
+        ""
+      );
+      reffAddress = reffAddress.replace("/", "");
+      if (reffAddress == "") {
+        reffAddress = "0xDC09B74bA5618D969979CF3495Ea3Dd14BC94312";
+      }
+      const reff = await contract.referralLink(reffAddress);
+      const userAddress = await signer.getAddress();
+      const signerContract = contract.connect(signer);
+      await signerContract.addReferral(userAddress, 100, reff);
     }
-    const reff = await contract.referralLink(reffAddress);
-    const userAddress = await signer.getAddress();
-    // console.log(reff);
-    const signerContract = contract.connect(signer);
-    await signerContract.addReferral(userAddress, 100, reff);
-
-  }
+  
 
   async function topup() {
     // MetaMask requires requesting permission to connect users accounts
@@ -128,13 +182,17 @@ const Home = () => {
 
     // const reff = await contract.owner();
     // console.log("lol: ", reff);
-    
+
     // Each DAI has 18 decimal places
     const tokenAddress = await contract.token();
     // const tokens = ethers.utils.parseUnits("100", 10);
-    const tokens = 100*10**10;
+    const tokens = 100 * 10 ** 10;
     console.log(tokens);
-    const tokenContract = new ethers.Contract(tokenAddress, tokenAbi, provider).connect(signer);
+    const tokenContract = new ethers.Contract(
+      tokenAddress,
+      tokenAbi,
+      provider
+    ).connect(signer);
     await tokenContract.approve(address, tokens);
 
     await sleep(15000);
@@ -143,20 +201,19 @@ const Home = () => {
     const signerContract = contract.connect(signer);
     await signerContract.topup(userAddress, 100);
   }
- 
+
   async function withdraw() {
-   // MetaMask requires requesting permission to connect users accounts
-   await provider.send("eth_requestAccounts", []);
+    // MetaMask requires requesting permission to connect users accounts
+    await provider.send("eth_requestAccounts", []);
 
-   // The MetaMask plugin also allows signing transactions to
-   // send ether and pay to change state within the blockchain.
-   // For this, you need the account signer...
-   const signer = provider.getSigner();
+    // The MetaMask plugin also allows signing transactions to
+    // send ether and pay to change state within the blockchain.
+    // For this, you need the account signer...
+    const signer = provider.getSigner();
 
-   const signerContract = contract.connect(signer);
-   await signerContract.claim(); 
+    const signerContract = contract.connect(signer);
+    await signerContract.claim();
   }
-  
   return (
     <>
       <header className="header-one">
@@ -172,32 +229,32 @@ const Home = () => {
               </div>
               <div className="col-xl-10 col-lg-10 col-md-9">
                 <div className="header-right ">
-                  <button className="top-btn coin-btn"
+                  <button
+                    className="top-btn coin-btn"
                     onClick={() => connectWallet()}
                   >
-                    CONEECT WALLET
+                    CONEECT WALLET <RiWallet3Line />
                   </button>
                 </div>
                 <div className="header_menu f-right">
                   <nav id="mobile-menu">
                     <ul className="main-menu">
                       <li className="menu-item-has-children">
-                        <a href="#">Home</a>
-                        <ul className="submenu">
-                          <li>
-                            <a href="index-2.html">Home 01</a>
-                          </li>
-                          <li>
-                            <a href="index-3.html">Home 02</a>
-                          </li>
-                        </ul>
+                        <a href="/Home">
+                          Home <RiHomeSmileLine />{" "}
+                        </a>
                       </li>
                       <li className="resulta">
-                        <a href="about.html">About us</a>
+                        <a href="about.html">
+                          About us <RiPhoneFindLine />
+                        </a>
                       </li>
                       <li className="menu-item-has-children">
-                        <a href="#">Pages</a>
-                        <ul className="submenu">
+                        <a href="#">
+                          Pages <RiAlignLeft />
+                        </a>
+                        </li>
+                       {/*  <ul className="submenu">
                           <li>
                             <a href="user-panel.html">User panel</a>
                           </li>
@@ -223,8 +280,8 @@ const Home = () => {
                             <a href="signup.html">Signup</a>
                           </li>
                         </ul>
-                      </li>
-                      <li className="menu-item-has-children">
+                     */}
+                      {/* <li className="menu-item-has-children">
                         <a href="#">Blog</a>
                         <ul className="submenu">
                           <li>
@@ -234,9 +291,11 @@ const Home = () => {
                             <a href="blog-details.html">Blog Details</a>
                           </li>
                         </ul>
-                      </li>
+                      </li> */}
                       <li className="contact">
-                        <a href="contact.html">Contact us</a>
+                        <a href="/Home">
+                          Contact Us <RiContactsLine />
+                        </a>
                       </li>
                     </ul>
                   </nav>
@@ -262,13 +321,22 @@ const Home = () => {
                         <img src={imageFunction.mainAbout} alt="" />
                         <div className="profile-content">
                           {/* <span className="pro-name">Stepen</span> */}
-                          <span className="pro-id">ID: {addr}</span>
-                          <span className="pro-number">{window.location.origin.toString()}/{addr}</span>
-                          <button className="top-btn coin-btn"
-                          onClick={() => {
-                            const reff = window.location.origin.toString() + "/"+ addr.toString();
-                            navigator.clipboard.writeText(reff)
-                          }}
+                          <span className="pro-id">Name: {addr}</span>
+                          <span className="pro-number">
+                            {/* {window.location.origin.toString()}/{addr} */}
+                          </span>
+                          {/*  <span className="pro-number">
+                            Aman
+                          </span> */}
+                          <button
+                            className="top-btn coin-btn"
+                            onClick={() => {
+                              const reff =
+                                window.location.origin.toString() +
+                                "/" +
+                                addr.toString();
+                              navigator.clipboard.writeText(reff);
+                            }}
                           >
                             Copy Link
                           </button>
@@ -278,43 +346,44 @@ const Home = () => {
                     <div className="dashboard-menu">
                       <ul>
                         <li className="active">
-                          <a href="user-panel.html">
-                            <i className="ti-dashboard"></i>Dashboard
+                          <a href="/Home">
+                            <TiArrowForward /> Dashboard
                           </a>
                         </li>
                         <li>
-                          <a href="user-diposit.html">
-                            <i className="ti-wallet"></i>MY STAKED
+                          <a href="#mystakedBoard">
+                            <TiBriefcase /> MY STAKED
                           </a>
                         </li>
                         <li>
-                          <a href="user-stacking.html">
-                            <i className="ti-bar-chart"></i>MY NETWORK
+                          <a href="/Home">
+                            <AiOutlineGlobal /> MY NETWORK
                           </a>
                         </li>
                         <li>
-                          <a href="user-withdraw.html">
-                            <i className="ti-import"></i>MY BONUSES
+                          <a href="/Home">
+                            <AiOutlineDeploymentUnit /> MY BONUSES
                           </a>
                         </li>
                         <li>
-                          <a href="user-transection.html">
-                            <i className="ti-layout-list-thumb"></i>MY WITHDRAW
+                          <a href="/Home">
+                            <RiMoneyDollarCircleFill />
+                            MY WITHDRAW
                           </a>
                         </li>
                         <li>
-                          <a href="user-notification.html">
-                            <i className="ti-bell"></i>Notifecations
+                          <a href="/Home">
+                            <RiNotification2Line /> NOTIFICATION{" "}
                           </a>
                         </li>
                         <li>
-                          <a href="user-info.html">
-                            <i className="ti-settings"></i>Settings
+                          <a href="/Home">
+                            <RiSettings2Line /> SETTINGS
                           </a>
                         </li>
                         <li>
-                          <a href="#">
-                            <i className="ti-shift-right"></i>Log out
+                          <a href="/Home">
+                            <RiLockPasswordLine /> LOG OUT
                           </a>
                         </li>
                       </ul>
@@ -334,20 +403,23 @@ const Home = () => {
                         <button
                           className="user-btn coin-btn"
                           onClick={() => topup()}
-                          >
-                            REINVEST
+                        >
+                          REINVEST <MdAddTask />
+                        </button>
+                        <button
+                          className="user-btn coin-btn"
+                          /* onClick={() => addRef()} */
+                          onClick={() => onPopupButton()}
+                        >
+                          DEPOSTE <MdHourglassEmpty />
                         </button>
 
                         <button
-                          className="user-btn coin-btn"
-                          onClick={() => addRef()}
-                          >
-                            Make a deposite
-                        </button>
-                        <button className="user-btn color-btn" href="#"
-                        onClick={() => withdraw()}
+                          className="user-btn color-btn"
+                          href="#"
+                          onClick={() => withdraw()}
                         >
-                          Withdraw funds
+                          WITHDRAW <MdOutlineSavings />
                         </button>
                       </div>
                     </div>
@@ -358,7 +430,7 @@ const Home = () => {
                     <div className="single-dash-head">
                       <div className="dashboard-amount d-flex flex-wrap align-items-center">
                         <div className="amount-content">
-                          <span className="pro-name">DAILY ROI</span>
+                          <span className="pro-name">DAILY RDB</span>
                           <span className="pro-money">${roi}</span>
                         </div>
                         <div className="invest-tumb">
@@ -371,7 +443,7 @@ const Home = () => {
                     <div className="single-dash-head">
                       <div className="dashboard-amount d-flex flex-wrap align-items-center">
                         <div className="amount-content">
-                          <span className="pro-name">LEVEL ROI</span>
+                          <span className="pro-name">LEVEL RDB</span>
                           <span className="pro-money">${referralReward}</span>
                         </div>
                         <div className="invest-tumb">
@@ -388,6 +460,20 @@ const Home = () => {
                           <span className="pro-money">${deposite}</span>
                         </div>
                         <div className="invest-tumb">
+                          <img src={imageFunction.mainIcon3} alt="" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  {/* Starts */}
+                  <div className="col-xl-4 col-lg-4 col-md-6">
+                    <div className="single-dash-head">
+                      <div className="dashboard-amount d-flex flex-wrap align-items-center">
+                        <div className="amount-content">
+                          <span className="pro-name">REWARDS</span>
+                          <span className="pro-money">$0</span>
+                        </div>
+                        <div className="invest-tumb">
                           <img src="img/icon/d3.png" alt="" />
                         </div>
                       </div>
@@ -397,11 +483,39 @@ const Home = () => {
                     <div className="single-dash-head">
                       <div className="dashboard-amount d-flex flex-wrap align-items-center">
                         <div className="amount-content">
+                          <span className="pro-name">MY DIRECTS</span>
+                          <span className="pro-money">$0</span>
+                        </div>
+                        <div className="invest-tumb">
+                          <img src="img/icon/d3.png" alt="" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-xl-4 col-lg-4 col-md-6">
+                    <div className="single-dash-head">
+                      <div className="dashboard-amount d-flex flex-wrap align-items-center">
+                        <div className="amount-content">
+                          <span className="pro-name">MY LEVELS</span>
+                          <span className="pro-money">$0</span>
+                        </div>
+                        <div className="invest-tumb">
+                          <img src="img/icon/d3.png" alt="" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  {/* ends */}
+
+                  <div className="col-xl-4 col-lg-4 col-md-6">
+                    <div className="single-dash-head">
+                      <div className="dashboard-amount d-flex flex-wrap align-items-center">
+                        <div className="amount-content">
                           <span className="pro-name">WITHDRAW</span>
                           <span className="pro-money">${claimed}</span>
                         </div>
                         <div className="invest-tumb">
-                          <img src="img/icon/d4.png" alt="" />
+                          <img src={imageFunction.mainIcon3} alt="" />
                         </div>
                       </div>
                     </div>
@@ -414,20 +528,20 @@ const Home = () => {
                           <span className="pro-money">${deposite}</span>
                         </div>
                         <div className="invest-tumb">
-                          <img src="img/icon/d5.png" alt="" />
+                          <img src={imageFunction.mainIcon5} alt="" />
                         </div>
                       </div>
                     </div>
                   </div>
                   <div className="col-xl-4 col-lg-4 col-md-6">
                     <div className="single-dash-head">
-                      <div className="dashboard-amount d-flex flex-wrap align-items-center">
+                      <div className="dashboard-amount d-flex align-items-center">
                         <div className="amount-content">
                           <span className="pro-name">TOTAL REFFERALS</span>
-                          <span className="pro-money">{referredCount}</span>
+                          <span className="pro-money">${referredCount}</span>
                         </div>
                         <div className="invest-tumb">
-                          <img src="img/icon/d6.png" alt="" />
+                          <img src={imageFunction.mainIcon6} alt="" />
                         </div>
                       </div>
                     </div>
@@ -437,7 +551,9 @@ const Home = () => {
                   <div className="col-xl-12 col-lg-12 col-md-12">
                     <div className="send-money-form transection-log">
                       <div className="form-text">
-                        <h4 className="form-top">Leaderboard</h4>
+                        <h4 className="form-top" id="mystakedBoard">
+                          MY STAKED
+                        </h4>
                         <div className="form-inner table-inner">
                           <table>
                             <tr>
@@ -447,40 +563,40 @@ const Home = () => {
                               <th>Details</th>
                             </tr>
                             <tr>
-                              <td>10/03/2021</td>
-                              <td>XE2GB4DF5X</td>
-                              <td>$600</td>
-                              <td>Payment recieve from Don</td>
+                              <td></td>
+                              <td></td>
+                              <td>$0</td>
+                              <td></td>
                             </tr>
                             <tr>
-                              <td>10/03/2021</td>
-                              <td>XE2GB4DF5X</td>
-                              <td>$600</td>
-                              <td>Payment recieve from Don</td>
+                              <td></td>
+                              <td></td>
+                              <td>$0</td>
+                              <td></td>
                             </tr>
                             <tr>
-                              <td>10/03/2021</td>
-                              <td>XE2GB4DF5X</td>
-                              <td>$600</td>
-                              <td>Payment recieve from Don</td>
+                              <td></td>
+                              <td></td>
+                              <td>$0</td>
+                              <td></td>
                             </tr>
                             <tr>
-                              <td>10/03/2021</td>
-                              <td>XE2GB4DF5X</td>
-                              <td>$600</td>
-                              <td>Payment recieve from Don</td>
+                              <td></td>
+                              <td></td>
+                              <td>$0</td>
+                              <td></td>
                             </tr>
                             <tr>
-                              <td>10/03/2021</td>
-                              <td>XE2GB4DF5X</td>
-                              <td>$600</td>
-                              <td>Payment recieve from Don</td>
+                              <td></td>
+                              <td></td>
+                              <td>$0</td>
+                              <td></td>
                             </tr>
                             <tr>
-                              <td>10/03/2021</td>
-                              <td>XE2GB4DF5X</td>
-                              <td>$600</td>
-                              <td>Payment recieve from Don</td>
+                              <td></td>
+                              <td></td>
+                              <td>$0</td>
+                              <td></td>
                             </tr>
                           </table>
                         </div>
@@ -535,6 +651,8 @@ const Home = () => {
       <script src="js/wow.min.js"></script>
       <script src="js/plugins.js"></script>
       <script src="js/main.js"></script>
+      {/* Add promot */}
+      <script src="minfile/quantumalert.js"></script>
     </>
   );
 };
@@ -543,5 +661,9 @@ const imageFunction = {
   mainAbout,
   mainIcon1,
   mainIcon2,
+  mainIcon3,
+  mainIcon4,
+  mainIcon5,
+  mainIcon6,
 };
 export default Home;
