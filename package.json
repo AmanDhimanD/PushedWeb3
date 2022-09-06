@@ -38,4 +38,10 @@
       "last 1 safari version"
     ]
   }
-}
+},
+  "scripts": {
+    "dev": "tsc --watch",
+    "build": "tsc",
+    "test": "tsc && jest",
+    "prepublishOnly": "tsc"
+  },
