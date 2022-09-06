@@ -95,6 +95,7 @@ const Home = () => {
       (parseFloat(userDetails.referralReward) / 10 ** 10) * 0.005 +
         amount * 0.005
     );
+    
     setReferredCount(userDetails.referredCount.toNumber());
     // const reff = await contract.referralLink("0x1d95eAbc614834Bf8Fb64d171D5577432187C436");
 
